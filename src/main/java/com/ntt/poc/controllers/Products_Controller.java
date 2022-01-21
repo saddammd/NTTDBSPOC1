@@ -2,6 +2,7 @@ package com.ntt.poc.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +35,7 @@ import com.ntt.poc.entities.RetailersResponse;
 import com.ntt.poc.exceptions.UserNotFoundException;
 import com.ntt.poc.repository.Retailers_Repository;
 import com.ntt.poc.service.Products_Service;
+import com.ntt.poc.service.User_ServiceImpl;
 
 @CrossOrigin
 @RestController
@@ -44,6 +48,8 @@ public class Products_Controller {
 	@Autowired
 	Retailers_Repository retailers_Repository;
 	
+	private Logger logger = Logger.getLogger(Products_Controller.class.getName());
+	
 	@PreAuthorize("hasAnyRole('SUPERUSER', 'ADMIN', 'USER')")
 	@GetMapping("/products")
 	public ResponseEntity<List<ProductsResponse>> listProducts(
@@ -51,6 +57,8 @@ public class Products_Controller {
 			@RequestParam(value = "pageNoValue", defaultValue= "1") int pageNoValue,
 			@RequestParam(value = "PageSize", defaultValue="100") int pageSize) {
 
+		logger.info("role value passed in controller" +SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString());
+		
 		int pageNo = pageNoValue-1;
 		Pageable pageable = PageRequest.of(pageNo, pageSize);
 		

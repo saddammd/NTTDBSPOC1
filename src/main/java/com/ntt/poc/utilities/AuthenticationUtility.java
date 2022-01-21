@@ -80,7 +80,7 @@ public class AuthenticationUtility  {
 			String role = "ROLE_".concat(str2);
 			authorities.add(new SimpleGrantedAuthority(role));
 
-			logger.info("role" +role +"has trimmed from JWT Token");
+			logger.info("role " +role +" has trimmed from JWT Token");
 		}
 
 		Collection<? extends GrantedAuthority> authorities2 = java.util.Arrays.asList(args).stream()
@@ -141,7 +141,7 @@ public class AuthenticationUtility  {
 	    	
 	    	roles = findUser.getRoles().get(i);
 	    	String str = roles.getAuthority();
-	    	logger.info("received roles of user" +str);
+	    	logger.info("received roles of user " +str);
 	    	logger.info("trimming roles details from database");
 	    	String str1 = str.replaceAll("\\[", "").trim();
 	    	String str2 = str1.replaceAll("\\]", "").trim();
