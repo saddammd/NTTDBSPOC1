@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
+import javax.persistence.NonUniqueResultException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.LoggerFactory;
@@ -93,7 +94,7 @@ public class AuthenticationUtility  {
 	
 	
 	public UsernamePasswordAuthenticationToken getGoogleAuthentication(HttpServletRequest request) 
-			throws IOException,	IncorrectResultSizeDataAccessException {
+			throws IOException,	IncorrectResultSizeDataAccessException, NonUniqueResultException {
 		logger.info("Signined in with Google token");
 		System.out.println(environment.getProperty("google.clientId"));
 		 final NetHttpTransport transport = new NetHttpTransport();
