@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.Environment;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -91,7 +92,8 @@ public class AuthenticationUtility  {
 	}
 	
 	
-	public UsernamePasswordAuthenticationToken getGoogleAuthentication(HttpServletRequest request) throws IOException {
+	public UsernamePasswordAuthenticationToken getGoogleAuthentication(HttpServletRequest request) 
+			throws IOException,	IncorrectResultSizeDataAccessException {
 		logger.info("Signined in with Google token");
 		System.out.println(environment.getProperty("google.clientId"));
 		 final NetHttpTransport transport = new NetHttpTransport();
