@@ -94,7 +94,7 @@ public class AuthenticationUtility  {
 	
 	
 	public UsernamePasswordAuthenticationToken getGoogleAuthentication(HttpServletRequest request) 
-			throws IOException,	IncorrectResultSizeDataAccessException, NonUniqueResultException {
+			throws IOException {
 		logger.info("Signined in with Google token");
 		System.out.println(environment.getProperty("google.clientId"));
 		 final NetHttpTransport transport = new NetHttpTransport();
@@ -109,6 +109,7 @@ public class AuthenticationUtility  {
 	        final GoogleIdToken googleIdToken = GoogleIdToken.parse(verifier.getJsonFactory(), token);
 	        final GoogleIdToken.Payload payload = googleIdToken.getPayload();
 	        
+	        try {
 	        logger.info("finding the user in database, if not found user will be registered");
 	        if(this.user_Repository.findByEmail(payload.getEmail())==null) {
 	        	logger.info("user details not found in database so proceeding with registration");
@@ -119,11 +120,14 @@ public class AuthenticationUtility  {
 	    		user2.setMobile("");
 	    		
 	    		user2.setProvider(Provider.GOOGLE);
-	    		Roles role1 = this.roles_Repository.getRoleByRoleId(3);
+	    		Roles role1 = this.roles_Repository.getRoleByRoleId(2);
 	    		user2.getRoles().add(role1);
 	    		this.user_Repository.save(user2);
 	    		logger.info("a new user registered with Google email Id");
 	    	 }
+	        }catch(Exception e) {
+	        	logger.info("Exception has thrown while registering a new google user " +payload.getEmail());
+	        }
 	        
 	        User findUser = this.user_Repository.findByEmail(payload.getEmail());
 	        logger.info("user has found in database");
@@ -137,6 +141,7 @@ public class AuthenticationUtility  {
 	    	
 	    	roles = findUser.getRoles().get(i);
 	    	String str = roles.getAuthority();
+	    	logger.info("received roles of user" +str);
 	    	logger.info("trimming roles details from database");
 	    	String str1 = str.replaceAll("\\[", "").trim();
 	    	String str2 = str1.replaceAll("\\]", "").trim();
