@@ -19,7 +19,7 @@ import javax.persistence.Table;
 import com.ntt.poc.enums.Provider;
 
 @Entity
-@Table(name = "nttdbspoc1User")
+//@Table(name = "nttdbspoc1User")
 public class User {
 
 	@Id

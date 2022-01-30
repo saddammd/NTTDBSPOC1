@@ -113,12 +113,13 @@ public class AuthenticationUtility  {
 	        logger.info("finding the user in database, if not found user will be registered");
 	        if(this.user_Repository.findByEmail(payload.getEmail())==null) {
 	        	logger.info("user details not found in database so proceeding with registration");
+	        	logger.info(payload.getEmail().toString());
 	        	User user2 = new User();
 	    		user2.setEmail(payload.getEmail());
 	    		user2.setName(payload.getEmail());
 	    		user2.setPassword("");
 	    		user2.setMobile("");
-	    		
+	    		 
 	    		user2.setProvider(Provider.GOOGLE);
 	    		Roles role1 = this.roles_Repository.getRoleByRoleId(2);
 	    		user2.getRoles().add(role1);
@@ -127,10 +128,10 @@ public class AuthenticationUtility  {
 	    	 }
 	        }catch(Exception e) {
 	        	logger.info("Exception has thrown while registering a new google user " +payload.getEmail());
-	        }
+	        } 
 	        
 	        User findUser = this.user_Repository.findByEmail(payload.getEmail());
-	        logger.info("user has found in database");
+	        logger.info("user has found in database" +payload.getEmail().toString());
 
 	        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
 	    	Roles roles = new Roles();
