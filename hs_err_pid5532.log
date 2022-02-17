@@ -1,0 +1,27 @@
+
+[error occurred during error reporting (printing fatal error message), id 0xc00000fd, EXCEPTION_STACK_OVERFLOW (0xc00000fd) at pc=0x00007ffe20b6a7b8]
+
+#
+#  Internal Error (./open/src/hotspot/share/runtime/thread.cpp:1792), pid=5532, tid=4108
+#  guarantee(cur_sp > stack_reserved_zone_base()) failed: not enough space to reguard - increase StackShadowPages
+#
+# JRE version: OpenJDK Runtime Environment (15.0.2+7) (build 15.0.2+7-27)
+# Java VM: OpenJDK 64-Bit Server VM (15.0.2+7-27, mixed mode, tiered, compressed oops, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dfile.encoding=UTF-8 -XX:+ShowCodeDetailsInExceptionMessages com.ntt.poc.Poc1Application
+
+Host: Intel(R) Core(TM) i5-6300U CPU @ 2.40GHz, 4 cores, 7G,  Windows 10 , 64 bit Build 19041 (10.0.19041.1466)
+Time: Tue Feb 15 12:03:30 2022 India Standard Time elapsed time: 62.153022 seconds (0d 0h 1m 2s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000002090af639f0):  JavaThread "http-nio-5000-exec-2" daemon [_thread_in_vm, id=4108, stack(0x0000004e5d700000,0x0000004e5d800000)]
+
+Stack: [0x0000004e5d700000,0x0000004e5d800000]

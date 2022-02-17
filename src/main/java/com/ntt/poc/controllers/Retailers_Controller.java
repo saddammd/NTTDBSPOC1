@@ -71,11 +71,14 @@ public class Retailers_Controller {
 	
 	@PreAuthorize("hasAnyRole('SUPERUSER', 'ADMIN')")
 	@SuppressWarnings("rawtypes")
-	@PostMapping(path = "/retailers", produces = { MediaType.APPLICATION_XML_VALUE,
+	@PostMapping(path = "/retailers"
+	, produces = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_VALUE }, consumes = { MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity saveRetailer(@RequestBody AddRetailers addretailers) {
-		retailers_Service.saveRetailer(addretailers);
+	public ResponseEntity<Retailers> saveRetailer(@RequestBody AddRetailers addretailers) {
+		Retailers saveRetailer = retailers_Service.saveRetailer(addretailers);
+		System.out.println("hello" +saveRetailer);
+//		return ResponseEntity.status(HttpStatus.OK).body(saveRetailer);
 		return new ResponseEntity(HttpStatus.OK);
 	}
 

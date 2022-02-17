@@ -40,6 +40,19 @@ public class Products {
 		this.category = category;
 		this.retailers = retailers;
 	}
+	
+	
+
+
+
+	public Products(Integer id, String productName, Integer price, String category, List<Retailers> retailers) {
+		super();
+		this.id = id;
+		this.productName = productName;
+		this.price = price;
+		this.category = category;
+		this.retailers = retailers;
+	}
 
 
 

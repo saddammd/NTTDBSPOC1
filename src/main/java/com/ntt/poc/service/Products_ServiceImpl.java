@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.ntt.poc.entities.Products;
 import com.ntt.poc.entities.Retailers;
+import com.ntt.poc.exceptions.ProductNotFoundException;
 import com.ntt.poc.exceptions.UserNotFoundException;
 import com.ntt.poc.repository.Product_Repository;
 import com.ntt.poc.repository.Retailers_Repository;
@@ -37,14 +38,14 @@ public class Products_ServiceImpl implements Products_Service{
 
 
 	@Override
-	public void deleteProducts(Integer id) throws UserNotFoundException {
-		Optional<Products> Products = product_Repository.findById(id);
+	public void deleteProducts(Integer id) throws ProductNotFoundException {
+		Optional<Products> Products =  product_Repository.findById(id);
 		
 		if(Products.isPresent()) {
 		product_Repository.deleteById(id);
 		}
 		
-		else throw new UserNotFoundException("User has not found with the id" +id);
+		else throw new ProductNotFoundException("products has not found with the id" +id);
 		
 	}
 

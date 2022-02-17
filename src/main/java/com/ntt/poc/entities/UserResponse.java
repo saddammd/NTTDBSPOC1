@@ -21,6 +21,15 @@ public class UserResponse {
 	private String password;
 
 	
+	
+	public UserResponse(Integer userId, String name, String email, String password) {
+		super();
+		this.userId = userId;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+	}
+
 	public UserResponse() {
 		super();
 	}

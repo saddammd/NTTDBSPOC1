@@ -38,7 +38,9 @@ public class Retailers_ServiceImpl implements Retailers_Service{
 		BeanUtils.copyProperties(addretailers, retailers);
 		retailers.setProducts(products);
 		retailers.getProducts().setId(addretailers.getProducts());
-		return retailers_Repository.save(retailers);
+		Retailers save = retailers_Repository.save(retailers);
+		return save;
+//		return retailers_Repository.save(retailers);
 	}
 
 	@Override
@@ -49,6 +51,8 @@ public class Retailers_ServiceImpl implements Retailers_Service{
 
 	@Override
 	public Optional<Retailers> getRetailer(Integer id) {
+		
+		//Optional<Retailers> findById = retailers_Repository.findById(id);
 		return retailers_Repository.findById(id);
 	}
 

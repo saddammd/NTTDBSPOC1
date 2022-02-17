@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -46,7 +47,9 @@ public class Register_Controller {
 	org.slf4j.Logger logger = LoggerFactory.getLogger(Register_Controller.class);
 
 	@PreAuthorize("hasAnyRole('ADMIN')")
-	@GetMapping("/showusers")
+	@GetMapping(path = "/showusers", 
+			produces = { MediaType.APPLICATION_JSON_VALUE})
+
 	public ResponseEntity<List<UserResponse>> showUsers() {
 
 		List<User> showAllUsers = this.user_Service.showAllUsers();
@@ -63,7 +66,8 @@ public class Register_Controller {
 		//adding comment
 	}
 
-	@PostMapping("/register")
+	@PostMapping(path = "/register",
+			produces = { MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<User> registerUser(@RequestBody User user) {
 		logger.info("registration request received");
 		User registerUser = user_Service.registerUser(user);
@@ -72,7 +76,7 @@ public class Register_Controller {
 
 	}
 
-	@PostMapping("/login")
+	@PostMapping(path = "/login", produces = { MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<String> login(@RequestBody Logindto logindto, HttpServletRequest request,
 			HttpServletResponse response) {
 		user_Service.login(logindto, request, response);
@@ -93,7 +97,7 @@ public class Register_Controller {
 	}
 	
 	@PreAuthorize("hasAnyRole('SUPERUSER', 'ADMIN', 'USER')")
-	@GetMapping("/userRoles/{email}")
+	@GetMapping(path = "/userRoles/{email}", produces = { MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<RolesResponse>> getUserRoles(@PathVariable String email) {
 		logger.info("get roles request received");
 		User user = this.user_Service.getUser(email);
@@ -113,14 +117,14 @@ public class Register_Controller {
 	}
 
 	@PreAuthorize("hasAnyRole('ADMIN')")
-	@PutMapping("/userRoles/{email}")
+	@PutMapping(path = "/userRoles/{email}", produces = { MediaType.APPLICATION_JSON_VALUE})
 	public User editUserRoles(@PathVariable String email, @RequestBody String roleIds){
 		logger.info("edit role request received");
 		return this.user_Service.updateRoles(email, roleIds);
 		
 	}
 	
-	@GetMapping("/showuser/{id}")
+	@GetMapping(path = "/showuser/{id}", produces = { MediaType.APPLICATION_JSON_VALUE})
 	public User getUser(@PathVariable Integer id) {
 		logger.info("get user details received");
 	return this.user_Service.getUser(id);

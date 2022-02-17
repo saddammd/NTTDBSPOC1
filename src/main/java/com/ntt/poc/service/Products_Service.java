@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.ntt.poc.entities.Products;
 import com.ntt.poc.entities.Retailers;
+import com.ntt.poc.exceptions.ProductNotFoundException;
 import com.ntt.poc.exceptions.UserNotFoundException;
 
 
@@ -15,7 +16,7 @@ public interface Products_Service {
 
 	public Products saveProducts(Products products);
 
-	public void deleteProducts(Integer id) throws UserNotFoundException;
+	public void deleteProducts(Integer id) throws ProductNotFoundException;
 
 	public List<Retailers> getRetailers(Integer id);
 	

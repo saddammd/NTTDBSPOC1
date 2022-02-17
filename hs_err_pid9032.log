@@ -1,0 +1,34 @@
+
+[error occurred during error reporting (printing fatal error message), id 0xc00000fd, EXCEPTION_STACK_OVERFLOW (0xc00000fd) at pc=0x00007ffe20b6a7b8]
+
+#
+#  Internal Error (./open/src/hotspot/share/runtime/thread.cpp:1792), pid=9032, tid=13444
+#  guarantee(cur_sp > stack_reserved_zone_base()) failed: not enough space to reguard - increase StackShadowPages
+#
+# JRE version: OpenJDK Runtime Environment (15.0.2+7) (build 15.0.2+7-27)
+# Java VM: OpenJDK 64-Bit Server VM (15.0.2+7-27, mixed mode, tiered, compressed oops, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dfile.encoding=UTF-8 -XX:+ShowCodeDetailsInExceptionMessages com.ntt.poc.Poc1Application
+
+Host: Intel(R) Core(TM) i5-6300U CPU @ 2.40GHz, 4 cores, 7G,  Windows 10 , 64 bit Build 19041 (10.0.19041.1466)
+Time: Tue Feb 15 11:56:21 2022 India Standard Time elapsed time: 262.254685 seconds (0d 0h 4m 22s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000001c5dec2e080):  JavaThread "http-nio-5000-exec-1" daemon [_thread_in_vm, id=13444, stack(0x0000006be9300000,0x0000006be9400000)]
+
+Stack: [0x0000006be9300000,0x0000006be9400000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x62ae9a]
+V  [jvm.dll+0x7817a9]
+V  [jvm.dll+0x782f03]
+V  [jvm.dll+0x7834c5]
+V  [jvm.dll+0x78347b]
+V  [jvm.dll+0x62a2b9]

@@ -32,6 +32,7 @@ import com.ntt.poc.entities.Products;
 import com.ntt.poc.entities.ProductsResponse;
 import com.ntt.poc.entities.Retailers;
 import com.ntt.poc.entities.RetailersResponse;
+import com.ntt.poc.exceptions.ProductNotFoundException;
 import com.ntt.poc.exceptions.UserNotFoundException;
 import com.ntt.poc.repository.Retailers_Repository;
 import com.ntt.poc.service.Products_Service;
@@ -97,7 +98,7 @@ public class Products_Controller {
 
     @PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/products/{id}")
-	public ResponseEntity<String> deleteProduct(@PathVariable Integer id) throws UserNotFoundException {
+	public ResponseEntity<String> deleteProduct(@PathVariable Integer id) throws ProductNotFoundException {
 
 		product_service.deleteProducts(id);
 

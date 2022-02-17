@@ -74,6 +74,7 @@ public class User_ServiceImpl implements User_Service   {
 		
 		String password_encode = bCryptPasswordEncoder.encode(user.getPassword());
 		user.setPassword(password_encode);
+		
 		return user_repository.save(user);		
 		}
 		throw new DuplicateRegistration("User's email address is already exist" +user.getEmail());

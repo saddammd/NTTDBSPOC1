@@ -74,6 +74,31 @@ public class Retailers {
 				+ ", products=" + products + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((retailerId == null) ? 0 : retailerId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Retailers other = (Retailers) obj;
+		if (retailerId == null) {
+			if (other.retailerId != null)
+				return false;
+		} else if (!retailerId.equals(other.retailerId))
+			return false;
+		return true;
+	}
+
 	
 	
 }

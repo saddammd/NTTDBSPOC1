@@ -8,6 +8,29 @@ public class AddRetailers {
 		private Integer products;
 		
 		
+		
+		
+		public AddRetailers(Integer retailerId, String retailerName, String location, Integer products) {
+			super();
+			this.retailerId = retailerId;
+			this.retailerName = retailerName;
+			this.location = location;
+			this.products = products;
+		}
+		
+		
+
+
+		public AddRetailers(String retailerName, String location, Integer products) {
+			super();
+			this.retailerName = retailerName;
+			this.location = location;
+			this.products = products;
+		}
+
+
+
+
 		public AddRetailers() {
 			super();
 			// TODO Auto-generated constructor stub

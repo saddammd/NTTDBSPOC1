@@ -17,4 +17,9 @@ public class Exception_Handlers {
 	public ResponseEntity<DuplicateRegistration> handleException(DuplicateRegistration ex){
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex);
 	}
+	
+	@ExceptionHandler
+	public ResponseEntity<ProductNotFoundException> handleException(ProductNotFoundException ex){
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex);
+	}
 }
