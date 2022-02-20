@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import com.ntt.poc.filters.AuthorizationFilter;
 import com.ntt.poc.repository.User_Repository;
@@ -30,6 +31,11 @@ public class Security_Config extends WebSecurityConfigurerAdapter {
 	ArrayList<String> list1 = new ArrayList<>();
 	ArrayList<String> list2 = new ArrayList<>();
 	ArrayList<String> list3 = new ArrayList<>();
+	
+	@Bean
+	public RestTemplate getRestTemplate() {
+		return new RestTemplate();
+	}
 	
 	@Bean
 	public BCryptPasswordEncoder getBCryptPasswordEncoder() {

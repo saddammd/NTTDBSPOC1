@@ -71,7 +71,7 @@ public class Retailers_Controller {
 	
 	@PreAuthorize("hasAnyRole('SUPERUSER', 'ADMIN')")
 	@SuppressWarnings("rawtypes")
-	@PostMapping(path = "/retailers"
+	@PostMapping(path = "/retailers" 
 	, produces = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_VALUE }, consumes = { MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_VALUE })
